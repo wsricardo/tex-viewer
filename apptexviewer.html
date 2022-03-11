@@ -49,7 +49,7 @@ Doação/Donate
 <br>
 </div>
 <div style="width: 40%; height: 30px; padding: 4px;  margin: 2% 35% 0 30% ; border-radius: 4px 4px 0 0; background-color: #839dab; color: white; font-size: 12pt;">Viewer Window</div>
-<div id="tex-out" style="margin: 0 0 0 0; width: auto; height: auto; padding: 18px; font-size: 16pt; text-align: left; background-color: #c5d0d6; border-radius: 8px; box-shadow: #bbbbbb 2px 4px 8px 1px;">
+<div id="tex-out" style=" white-space: pre-wrap; margin: 0 0 0 0; width: auto; height: auto; padding: 18px; font-size: 16pt; text-align: left; background-color: #c5d0d6; border-radius: 8px; box-shadow: #bbbbbb 2px 4px 8px 1px;">
 
 <br>
 <b>Calculo - Limite</b>
@@ -97,23 +97,30 @@ function insertElem(elem_tag, elem_content, elem_where=document) {
 }
 
 async function convert() {
+	// Reg is regular expressions to replace new line
+	let reg_newline = /(\w+|.+|\n+)(\\newline)+(\n|\w+)/; 
+	let reg_breakline = /(\w+|.+|\n+)(\\breakline)+(\n|\w+)/;
 	console.log("called!");
 	var text = document.getElementsByTagName("textarea");
 	var out = document.getElementById("tex-out");
 	//out.innerHTML = text["textarea"].value;
 	out.innerHTML = "";
 	//const post = text["textarea"].value.replaceAll("\\newline", "<br>");
-	var lis = text["textarea"].value.split("\\");
-	var post="";
+	//var lis = text["textarea"].value.split("\newline");
+	out_text = text["textarea"].value.replace(reg_newline, "\n".toString());
+	out_text = out_text.replace(reg_breakline, "\n".toString() );
+	console.log('>text ', text['textarea'].value);
+
+	/*var post="";
 	for(i=0; i < lis.length; i++){
-		post += "$" + lis[i]+"$" + "<br>";
-	}
-	var tagcontent = document.createTextNode(post);
+		post += lis[i] + "<br>";
+	}*/
+	var tagcontent = document.createTextNode(out_text);
 	//out.appendChild(tagcontent);
-	out.insertAdjacentHTML("beforeend", post);
-	console.log(text["textarea"].value);
+	out.insertAdjacentHTML("beforeend", out_text);
+	console.log('>> ', out_text);
 	console.log(">", out.outerText);
-	console.log("post> ", post);
+	//console.log("post> ", post);
 	
 	MathJax.typeset();
 	
