@@ -1,2 +1,2 @@
 # tex-viewer
-Editor e viewer latex equations
+MathJax and Tex Viewer.

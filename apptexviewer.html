@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>LaTex View Page</title>
+
+<style>
+
+body {margin: 0; padding: 0;}
+
+#page-app {width: 100%; display: grid; padding:0; text-align: center; font-family: arial, sans-serif;}
+#app-wview {display: grid; background-color: #c5c5c5;color:  white; width: 100%; height: auto; padding: 6% 0 8% 0; font-weight: bold; font-size: 22pt;}
+#wview{color: black;background-color: whitesmoke; padding: 10pt; height: auto; margin: 2pt;}
+#app-box-in { width: auto; height: auto; padding: 4px 2px 25px 2px; margin: 1% 10% 0 15%;  background-color: whitesmoke; border: 1px solid white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+#app-tex-code {display: grid;  border: none; margin: 2pt 8pt 0 8pt;  }
+#app-tex-code textarea {  grid-row: 1; grid-column: 1 / span 2; border: none; /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/ }
+/* Buttons "Render" and "Save (Render to Printer)"*/
+#btn { grid-row: 2; float: center; border: none; padding: 4pt; color: #18465f; font-size: 12pt;background-color: #c5c5c5; border-radius: 8px; text-decoration: none; }
+#btn:hover { background-color: gray; }
+#tex-input {  color: #18465f;}
+
+</style>
+
+</head>
+<body>
+<div id="page-app">
+<div id="app-wview">
+LaTex View
+<div id="app-box-in">
+	<div id="app-tex-code">
+	<textarea id="tex-input" name="textarea" placeholder="Your Tex Code" rows="20" cols="80"></textarea>
+	<a href="#tex-out" id="btn" onclick="convert()">Render</a>
+	<a href="#" id="btn" onclick="saveprint()">Save (Render to Printer)</a>
+	 </div>
+</div>
+
+</div>
+
+<div id="wview">
+<div style="margin: 0; width: auto; height: auto; padding: 4pt; background-color: white;">
+
+Doação/Donate
+<br /><br>
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="hosted_button_id" value="PRD59UQUD5NPG" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+</form>
+<br>
+</div>
+<div style="width: 40%; height: 30px; padding: 4px;  margin: 2% 35% 0 30% ; border-radius: 4px 4px 0 0; background-color: #839dab; color: white; font-size: 12pt;">Viewer Window</div>
+<div id="tex-out" style="margin: 0 0 0 0; width: auto; height: auto; padding: 18px; font-size: 16pt; text-align: left; background-color: #c5d0d6; border-radius: 8px; box-shadow: #bbbbbb 2px 4px 8px 1px;">
+
+<br>
+<b>Calculo - Limite</b>
+<br><br>
+<span style="font-weight: bold;" >Definição</span>: Seja \(f\) uma função cujo domínio \(D\subset \mathbb{R}^2\) contém pontos arbitrariamente próximos de \((a,b)\). Dizemos que o limite de \(f(x,y)\) quando \((x, y)\) tende a \((a, b)\) é \(L\) e escrevemos
+<br><br>
+\[\lim_{(x,y) \to (a,b)} f(x,y) = L\]
+<br>
+se para todo número \(\epsilon > 0\) existe um número correspondente \(\delta > 0\) tal que se \((x, y) \in D\) e \(0 < \sqrt{(x-a)^2 + (y - b)^2} < \delta\) então \(|f(x, y) - L| < \epsilon\).
+<br><br><br>
+<u>Exemplo</u>: Verificar que \(\lim_{(x,y) \to (0,0)} \frac{3x^2y}{x^2 + y^2} = 0\).
+<br>
+Seja \(\epsilon > 0\), queremos determinar um \(\delta > 0\) tal que se
+\(0 < \sqrt{x^2+y^2} < \delta\) então \(|\frac{3x^2y}{x^2+y^2}| < \epsilon\)
+<br>
+Considerando \(x^2 > 0\) e \(y^2 > 0\), como \(x^2+y^2 > 0\) e \(3x^2y>0 \; se \; y\geq 0 \; e \; 3x^2y < 0 \; se \; y < 0\) com \((x, y) \in D \subset \mathbb{R}^2\), temos
+\(0 < \sqrt{x^2 + y^2} < \delta \; então \; \frac{3x^2|y|}{x^2+y^2} < \epsilon\)
+<br><br>
+Como \(y^2 \geq 0\) logo \(x^2+ y^2 \geq x^2\) assim \(\frac{x^2}{x^2+y^2} \leq 1\) e portanto
+<br><br>
+\[\frac{3x^2|y|}{x^2+y^2} \leq (3|y|) = 3\sqrt{y^2} < 3\sqrt{x^2+ y^2}\]
+<br>
+Como, se \(3\sqrt{x^2 + y^2} < \epsilon\) logo \(\frac{3x^2|y|}{x^2+y^2} < \epsilon\) assim se escolhermos \(\delta = \frac{\epsilon}{3}\) e fizermos \(0 < \sqrt{x^2+y^2} < \delta\) tal que,
+\(3\sqrt{x^2+y^2} < \epsilon\) de forma que \(\frac{3x^2|y|}{x^2+y^2} < \epsilon\) obtendo-se \(\sqrt{x^2 + y^2} < \frac{\epsilon}{3}\).
+<br>
+Assim se escolhermos \(\delta = \frac{\epsilon}{3}\) e fizermos \(0 < \sqrt{x^2+ y^2} < \delta\) teremos,
+<br>
+\[|\frac{3x^2y}{x^2+y^2}| < 3\sqrt{x^2+y^2} < 3 \delta = 3(\frac{\epsilon}{3}) = \epsilon\]. \(\square\)
+
+
+</div>
+</div>
+
+</div>
+<footer style="margin: 10px; padding: 8px; text-align: center; ">Blog <a href="https://wsricardo.blogspot.com">WSRicardo</a></footer>
+<script>
+//let m;
+//let content;
+
+function insertElem(elem_tag, elem_content, elem_where=document) {
+	var tage = document.createElement(elem_tag);
+	var tagcont = document.createTextNode(elem_content)
+	//tage.appendChild(tagcont);
+	//elem_where.appendChild(tage);
+}
+
+async function convert() {
+	console.log("called!");
+	var text = document.getElementsByTagName("textarea");
+	var out = document.getElementById("tex-out");
+	//out.innerHTML = text["textarea"].value;
+	out.innerHTML = "";
+	//const post = text["textarea"].value.replaceAll("\\newline", "<br>");
+	var lis = text["textarea"].value.split("\\");
+	var post="";
+	for(i=0; i < lis.length; i++){
+		post += "$" + lis[i]+"$" + "<br>";
+	}
+	var tagcontent = document.createTextNode(post);
+	//out.appendChild(tagcontent);
+	out.insertAdjacentHTML("beforeend", post);
+	console.log(text["textarea"].value);
+	console.log(">", out.outerText);
+	console.log("post> ", post);
+	
+	MathJax.typeset();
+	
+}
+
+async function saveprint(){
+	console.log("save called!");
+	var text = document.getElementsByTagName("textarea");
+	var out = document.createTextNode(text["textarea"].value);
+	document.body.innerHTML = "";
+	document.body.style="padding: 12px; font-size: 22pt; margin: 8px; color: black; width: auto;";
+	document.body.appendChild(out);
+	MathJax.typeset();
+	window.print();
+}
+
+
+</script>
+
+
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+
+</body>
+
+</html>
