@@ -41,11 +41,15 @@ LaTex View
 
 Doação/Donate
 <br /><br>
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-<input type="hidden" name="hosted_button_id" value="PRD59UQUD5NPG" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
-</form>
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1OU842E6ORcZauCfdojZJbrJ"
+  publishable-key="pk_live_51OU6oRE6ORcZauCfvm13wveHFVKQwPNOB51SMdM1AJYdQNn8mEMJD50BUJfgBI5RfXPCjiVNtlbVOPPoiQob6Y0T00xR9vQtPd"
+>
+</stripe-buy-button>
 <br>
 </div>
 <div style="width: 40%; height: 30px; padding: 4px;  margin: 2% 35% 0 30% ; border-radius: 4px 4px 0 0; background-color: #839dab; color: white; font-size: 12pt;">Viewer Window</div>
