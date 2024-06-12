@@ -171,7 +171,8 @@ async function checkParamURL( ) {
 	const text = decodeURI( url.search.split('?text=')[1] ).replaceAll("\\", " ");
 	
 
-	if ( url['href'].search( "text" ) ) {
+	// If parameter "text" passed in URL.
+	if ( url['href'].search( "text=" ) !== -1 ) {
 		if (text[0] === '"' && text[ text.length - 1 ] == '"' ){ 
 			textField.value = text.slice( 1, -1 );
 
@@ -181,8 +182,13 @@ async function checkParamURL( ) {
 		}
 
 		convert();
-
+		//console.log('if text');
 		return text;
+	} else {
+		//console.log("else text");
+
+		return "Insert yout LaTex text";
+
 	}
 
 	
