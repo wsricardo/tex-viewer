@@ -141,6 +141,34 @@ async function saveprint(){
 	window.print();
 }
 
+async function checkParamURL( ) {
+	// If param text in url insert latex text in texfield and render latex.
+	
+	const textField = document.querySelector("textarea");
+
+	const url = new URL( window.location.href )
+	const sParam = url.searchParams
+
+	const text = sParam.get( "text" )
+
+	if ( text )  {
+		if (text[0] === '"' && text[ text.length - 1 ] == '"' ){ 
+			textField.value = text.slice( 1, -1 );
+
+		} else {
+
+			textField.value = text;
+		}
+
+		convert();
+	}
+
+	
+	return text
+}
+
+checkParamURL()
+
 
 </script>
 
