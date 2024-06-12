@@ -90,6 +90,21 @@ Assim se escolhermos \(\delta = \frac{\epsilon}{3}\) e fizermos \(0 < \sqrt{x^2+
 </div>
 <footer style="margin: 10px; padding: 8px; text-align: center; ">Blog <a href="https://wsricardo.blogspot.com">WSRicardo</a></footer>
 <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+
+<script>
 //let m;
 //let content;
 
@@ -126,7 +141,7 @@ async function convert() {
 	console.log(">", out.outerText);
 	//console.log("post> ", post);
 	
-	//MathJax.typeset();
+	MathJax.typeset();
 	
 }
 
@@ -137,7 +152,8 @@ async function saveprint(){
 	document.body.innerHTML = "";
 	document.body.style="padding: 12px; font-size: 22pt; margin: 8px; color: black; width: auto;";
 	document.body.appendChild(out);
-	//MathJax.typeset();
+	MathJax.typeset();
+
 	window.print();
 }
 
@@ -179,19 +195,6 @@ checkParamURL()
 
 
 
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
 
 
 </body>
