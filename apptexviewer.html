@@ -150,8 +150,9 @@ async function checkParamURL( ) {
 	const sParam = url.searchParams
 
 	//const text = sParam.get( "text" )
-	
-	const text = decodeURIComponent( url.search.split('?text=')[1] ).replaceAll("\\", " ")
+	// The string "//" mean "space" in text for use share link in plataforms that change "space"
+	// for the code "%20" of char "+".
+	const text = decodeURI( url.search.split('?text=')[1] ).replaceAll("\\", " ");
 	
 
 	if ( text )  {
