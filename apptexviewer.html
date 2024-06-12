@@ -126,7 +126,7 @@ async function convert() {
 	console.log(">", out.outerText);
 	//console.log("post> ", post);
 	
-	MathJax.typeset();
+	//MathJax.typeset();
 	
 }
 
@@ -137,7 +137,7 @@ async function saveprint(){
 	document.body.innerHTML = "";
 	document.body.style="padding: 12px; font-size: 22pt; margin: 8px; color: black; width: auto;";
 	document.body.appendChild(out);
-	MathJax.typeset();
+	//MathJax.typeset();
 	window.print();
 }
 
@@ -149,7 +149,8 @@ async function checkParamURL( ) {
 	const url = new URL( window.location.href )
 	const sParam = url.searchParams
 
-	const text = sParam.get( "text" )
+	//const text = sParam.get( "text" )
+	const 	text = decodeURIComponent( url.search.split('?text=')[1] );
 
 	if ( text )  {
 		if (text[0] === '"' && text[ text.length - 1 ] == '"' ){ 
