@@ -3,6 +3,20 @@
 <head>
 <meta charset="utf-8">
 <title>LaTex View Page</title>
+<script type="text/javascript" id="MathJax-script"  defer
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
 
 <style>
 
@@ -99,18 +113,26 @@ MathJax = {
   }
 };
 </script>
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
 
 
 <script>
 //let m;
 //let content;
+//const Promise = Promise.resolve();
+
+//const scriptLoad = document.querySelector("#MathJax-script");
+//scriptLoad.addEventListener( 'load', () => {
+//	let sl = new Promise( ( resolve ) => {
+//		resolve( scriptLoad['src'] );
+//
+//	} );
+//} );
+
+
 
 function insertElem(elem_tag, elem_content, elem_where=document) {
-	var tage = document.createElement(elem_tag);
-	var tagcont = document.createTextNode(elem_content)
+	var tage = document.createElement( elem_tag );
+	var tagcont = document.createTextNode( elem_content )
 	//tage.appendChild(tagcont);
 	//elem_where.appendChild(tage);
 }
@@ -136,30 +158,65 @@ async function convert() {
 	}*/
 	var tagcontent = document.createTextNode(out_text);
 	//out.appendChild(tagcontent);
+	
 	out.insertAdjacentHTML("beforeend", out_text);
+	
+
 	console.log('>> ', out_text);
 	console.log(">", out.outerText);
 	//console.log("post> ", post);
 	
-	MathJax.typeset();
+ 	MathJax.typeset( );
 	
 }
+function docprint(){
+	setTimeout( window.print() , 2000 );
+	MathJax.typeset();
+}
 
-async function saveprint(){
+function saveprint2(){
+	const text = document.getElementsByTagName("textarea");
+	document.body.innerHTML = '<div onload="print();">'+text["textarea"].value+'</div>';
+	MathJax.typeset();
+	print();
+}
+
+function saveprint(){
 	console.log("save called!");
 	var text = document.getElementsByTagName("textarea");
-	var out = document.createTextNode(text["textarea"].value);
+	
+	const out_content = document.createTextNode( text["textarea"].value );
+	
+	var out = document.createElement("div");
+	
 	document.body.innerHTML = "";
 	document.body.style="padding: 12px; font-size: 22pt; margin: 8px; color: black; width: auto;";
-	document.body.appendChild(out);
+	out.append( out_content );
+	
+
+	document.body.append(out);
+	out.setAttribute( "onload", "print();" );
+
+	console.log("value textarea ", out  );
+	
+	//convert() ;
+	//return document;
+	
+	//docprint();
+
 	MathJax.typeset();
 
-	window.print();
+	/*await new Promise( ( resolve ) => {
+		console.log("Run promisse for window print.")	
+		resolve( docprint() );
+		
+	} );*/ 
+	
 }
 
 async function checkParamURL( ) {
 	// If param text in url insert latex text in texfield and render latex.
-	
+
 	const textField = document.querySelector("textarea");
 
 	const url = new URL( window.location.href )
@@ -180,8 +237,7 @@ async function checkParamURL( ) {
 
 			textField.value = text;
 		}
-
-		convert();
+		await convert();
 		//console.log('if text');
 		return text;
 	} else {
@@ -193,8 +249,8 @@ async function checkParamURL( ) {
 
 	
 }
-
 checkParamURL()
+
 
 
 </script>
