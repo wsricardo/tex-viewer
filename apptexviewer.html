@@ -97,40 +97,10 @@ Assim se escolhermos \(\delta = \frac{\epsilon}{3}\) e fizermos \(0 < \sqrt{x^2+
 
 </div>
 <footer style="margin: 10px; padding: 8px; text-align: center; ">Blog <a href="https://wsricardo.blogspot.com">WSRicardo</a></footer>
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-
 
 <script>
-//let m;
-//let content;
-//const Promise = Promise.resolve();
 
-//const scriptLoad = document.querySelector("#MathJax-script");
-//scriptLoad.addEventListener( 'load', () => {
-//	let sl = new Promise( ( resolve ) => {
-//		resolve( scriptLoad['src'] );
-//
-//	} );
-//} );
-
-
-
-function insertElem(elem_tag, elem_content, elem_where=document) {
-	var tage = document.createElement( elem_tag );
-	var tagcont = document.createTextNode( elem_content )
-	//tage.appendChild(tagcont);
-	//elem_where.appendChild(tage);
-}
-
+// Pre-process and prepare to rende latex.
 async function convert() {
 	// Reg is regular expressions to replace new line
 	let reg_newline = /(\w+|.+|\n+)(\\newline)+(\n|\w+)/; 
@@ -138,24 +108,17 @@ async function convert() {
 	console.log("called!");
 	var text = document.getElementsByTagName("textarea");
 	var out = document.getElementById("tex-out");
-	//out.innerHTML = text["textarea"].value;
+	
 	out.innerHTML = "";
-	//const post = text["textarea"].value.replaceAll("\\newline", "<br>");
-	//var lis = text["textarea"].value.split("\newline");
+	
 	out_text = text["textarea"].value.replace(reg_newline, "\n".toString());
 	out_text = out_text.replace(reg_breakline, "\n".toString() );
 	console.log('>text ', text['textarea'].value);
 
-	/*var post="";
-	for(i=0; i < lis.length; i++){
-		post += lis[i] + "<br>";
-	}*/
 	var tagcontent = document.createTextNode(out_text);
-	//out.appendChild(tagcontent);
 	
 	out.insertAdjacentHTML("beforeend", out_text);
 	
-
 	console.log('>> ', out_text);
 	console.log(">", out.outerText);
 	//console.log("post> ", post);
@@ -163,19 +126,9 @@ async function convert() {
  	MathJax.typeset( );
 	
 }
-function docprint(){
-	setTimeout( window.print() , 2000 );
-	MathJax.typeset();
-}
 
-function saveprint2(){
-	const text = document.getElementsByTagName("textarea");
-	document.body.innerHTML = '<div onload="print();">'+text["textarea"].value+'</div>';
-	MathJax.typeset();
-	print();
-}
-
-function saveprint(){
+// Prepare for print in browser.
+async function saveprint(){
 	console.log("save called!");
 	var text = document.getElementsByTagName("textarea");
 	
@@ -191,20 +144,9 @@ function saveprint(){
 	document.body.append(out);
 	out.setAttribute( "onload", "print();" );
 
-	console.log("value textarea ", out  );
-	
-	//convert() ;
-	//return document;
-	
-	//docprint();
+	//console.log("value textarea ", out  );
 
 	MathJax.typeset();
-
-	/*await new Promise( ( resolve ) => {
-		console.log("Run promisse for window print.")	
-		resolve( docprint() );
-		
-	} );*/ 
 	
 }
 
@@ -240,20 +182,11 @@ async function checkParamURL( ) {
 		return "Insert yout LaTex text";
 
 	}
-
-	
 }
-checkParamURL()
 
-
+checkParamURL();
 
 </script>
 
-
-
-
-
-
 </body>
-
 </html>
